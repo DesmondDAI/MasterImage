@@ -1,6 +1,0 @@
-framework module Pods_MasterImage {
-  umbrella header "Pods-MasterImage-umbrella.h"
-
-  export *
-  module * { export * }
-}
