@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ImageViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat_dog_2" translatesAutoresizingMaskIntoConstraints="NO" id="ExC-IT-Yeu">
+                                <rect key="frame" x="67.5" y="532" width="240" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ExC-IT-Yeu" secondAttribute="height" multiplier="16:9" id="3CJ-L4-V2i"/>
+                                    <constraint firstAttribute="width" constant="240" id="YYS-xc-nsu"/>
+                                </constraints>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJh-o7-0vO">
+                                <rect key="frame" x="0.0" y="20" width="375" height="211"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SJh-o7-0vO" secondAttribute="height" multiplier="16:9" id="fcc-6Z-zuY"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SJh-o7-0vO" secondAttribute="trailing" id="1ZK-QH-ZsC"/>
+                            <constraint firstItem="ExC-IT-Yeu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Kg-oN-NHp"/>
+                            <constraint firstItem="SJh-o7-0vO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="TFw-KK-Qet"/>
+                            <constraint firstItem="SJh-o7-0vO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Z2W-ui-ndd"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ExC-IT-Yeu" secondAttribute="bottom" id="qnR-fh-RAr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="ExC-IT-Yeu" id="d7n-dW-ISr"/>
+                        <outlet property="scrollView" destination="SJh-o7-0vO" id="aqT-c1-mhv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cat_dog_2" width="1280" height="800"/>
+    </resources>
+</document>

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ImageViewer.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>MasterImage.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>EEE0AE891E7D2A5900F4165A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEE0AE9F1E7D2AF200F4165A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEE0AEB01E7D2B4000F4165A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

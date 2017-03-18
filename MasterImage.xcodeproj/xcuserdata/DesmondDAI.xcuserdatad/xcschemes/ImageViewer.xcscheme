@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EEE0AE891E7D2A5900F4165A"
-               BuildableName = "MasterImage.app"
-               BlueprintName = "MasterImage"
+               BlueprintIdentifier = "EEE0AEB01E7D2B4000F4165A"
+               BuildableName = "ImageViewer.app"
+               BlueprintName = "ImageViewer"
                ReferencedContainer = "container:MasterImage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EEE0AE891E7D2A5900F4165A"
-            BuildableName = "MasterImage.app"
-            BlueprintName = "MasterImage"
+            BlueprintIdentifier = "EEE0AEB01E7D2B4000F4165A"
+            BuildableName = "ImageViewer.app"
+            BlueprintName = "ImageViewer"
             ReferencedContainer = "container:MasterImage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EEE0AE891E7D2A5900F4165A"
-            BuildableName = "MasterImage.app"
-            BlueprintName = "MasterImage"
+            BlueprintIdentifier = "EEE0AEB01E7D2B4000F4165A"
+            BuildableName = "ImageViewer.app"
+            BlueprintName = "ImageViewer"
             ReferencedContainer = "container:MasterImage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EEE0AE891E7D2A5900F4165A"
-            BuildableName = "MasterImage.app"
-            BlueprintName = "MasterImage"
+            BlueprintIdentifier = "EEE0AEB01E7D2B4000F4165A"
+            BuildableName = "ImageViewer.app"
+            BlueprintName = "ImageViewer"
             ReferencedContainer = "container:MasterImage.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
