@@ -9,18 +9,17 @@
 import UIKit
 import NYTPhotoViewer
 
-class MainViewController: UIViewController, NYTPhotosViewControllerDelegate {
+class MainViewController: UIViewController, NYTPhotosViewControllerDelegate, UIScrollViewDelegate {
 
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var samplePhotos: Array = [FocusableImage]()
+    var focusableImageViews: Array = [UIImageView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.automaticallyAdjustsScrollViewInsets = false
-        self.setupImageView()
         self.initSamplePhotos()
         self.setupScrollViewData()
     }
@@ -28,39 +27,31 @@ class MainViewController: UIViewController, NYTPhotosViewControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("scroll view content size in viewDidAppear: ", self.scrollView.contentSize)
-        print("scroll view frame in view did appear: ", self.scrollView.frame)
     }
     
     
     // MARK: Internal Methods
-    func setupImageView()
-    {
-        let tapOnImageView = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
-        tapOnImageView.numberOfTapsRequired = 1
-        self.imageView.addGestureRecognizer(tapOnImageView)
-    }
-    
     func setupScrollViewData()
     {
-        self.scrollView.backgroundColor = .black
+        self.scrollView.delegate = self
         let pageWidth: CGFloat = UIScreen.main.bounds.width
         let pageHeight: CGFloat = pageWidth * 9 / 16
-        print("scroll view frame in view did load: ", self.scrollView.frame)
+        
         self.scrollView.contentSize = CGSize(width: pageWidth * CGFloat(self.samplePhotos.count), height: pageHeight)
-        print("scrollView content size: ", self.scrollView.contentSize)
         for (index, photo) in self.samplePhotos.enumerated() {
             let imagePage = UIImageView(frame: CGRect(x: pageWidth * CGFloat(index), y: 0, width: pageWidth, height: pageHeight))
-            print(index, " image frame: ", imagePage.frame)
             imagePage.image = photo.image
             imagePage.clipsToBounds = true
             imagePage.contentMode = .scaleAspectFill
+            imagePage.isUserInteractionEnabled = true
+            self.setupImageView(imagePage)
+            
+            self.focusableImageViews.append(imagePage)
             self.scrollView.addSubview(imagePage)
         }
     }
     
-    func initSamplePhotos()
-    {
+    func initSamplePhotos() {
         self.samplePhotos.append(FocusableImage(image: UIImage.init(named: "cat_dog_2"), imageData: nil, attributedCaptionTitle: NSAttributedString(string: "hello_1")))
         self.samplePhotos.append(FocusableImage(image: UIImage.init(named: "cat_dog_3"), imageData: nil, attributedCaptionTitle: NSAttributedString(string: "hello_1")))
         self.samplePhotos.append(FocusableImage(image: UIImage.init(named: "cat_dog_4"), imageData: nil, attributedCaptionTitle: NSAttributedString(string: "hello_1")))
@@ -68,28 +59,50 @@ class MainViewController: UIViewController, NYTPhotosViewControllerDelegate {
         self.samplePhotos.append(FocusableImage(image: UIImage.init(named: "cat_dog_6"), imageData: nil, attributedCaptionTitle: NSAttributedString(string: "hello_1")))
     }
     
+    func setupImageView(_ imageView: UIImageView) {
+        let tapOnImageView = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:)))
+        tapOnImageView.numberOfTapsRequired = 1
+        imageView.addGestureRecognizer(tapOnImageView)
+    }
+    
     
     // MARK: Actions
-    func imageViewTapped(_ sender: UITapGestureRecognizer)
-    {
-        let photosVC = NYTPhotosViewController(photos: self.samplePhotos)
-        photosVC.delegate = self
+    func imageViewTapped(_ sender: UITapGestureRecognizer) {
+        guard let tappedImageView = sender.view as? UIImageView else { return }
+        
+        guard let tappedViewIndex = self.focusableImageViews.index(of: tappedImageView) else { return }
+        
+        let photosVC = NYTPhotosViewController(photos: self.samplePhotos, initialPhoto: self.samplePhotos[tappedViewIndex], delegate: self)
         self.present(photosVC, animated: true, completion: nil)
     }
 }
 
 
-extension MainViewController
-{
+extension MainViewController {
+    // MARK: UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // TODO
+    }
+    
     // MARK: NYTPhotosViewControllerDelegate
     func photosViewController(_ photosViewController: NYTPhotosViewController, referenceViewFor photo: NYTPhoto) -> UIView? {
-        return self.imageView
+        guard let focusableImage = photo as? FocusableImage, let imageIndex = self.samplePhotos.index(of: focusableImage) else { return nil }
+        
+        let imageView = self.focusableImageViews[imageIndex]
+        
+        return imageView
+    }
+    
+    func photosViewController(_ photosViewController: NYTPhotosViewController, didNavigateTo photo: NYTPhoto, at photoIndex: UInt) {
+        let pageWidth = UIScreen.main.bounds.width
+        let pageHeight = pageWidth * 9 / 16
+        let visibleRect = CGRect(x: pageWidth * CGFloat(photoIndex), y: 0, width: pageWidth, height: pageHeight)
+        self.scrollView.scrollRectToVisible(visibleRect, animated: false)
     }
 }
 
 
-class FocusableImage: NSObject, NYTPhoto
-{
+class FocusableImage: NSObject, NYTPhoto {
     var image: UIImage?
     var imageData: Data?
     var placeholderImage: UIImage?
