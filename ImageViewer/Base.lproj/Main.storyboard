@@ -28,20 +28,53 @@
                                     <constraint firstAttribute="width" secondItem="SJh-o7-0vO" secondAttribute="height" multiplier="16:9" id="fcc-6Z-zuY"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YO9-FP-C5j">
+                                <rect key="frame" x="164" y="621" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="startTransitionBtnDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jfo-px-CRt"/>
+                                </connections>
+                            </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1j-4t-OYW">
+                                <rect key="frame" x="87.5" y="389" width="200" height="200"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat_dog_4" translatesAutoresizingMaskIntoConstraints="NO" id="10f-G2-bq6">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.97166803209999997" blue="0.60117250680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="9hz-TL-jOg"/>
+                                    <constraint firstItem="10f-G2-bq6" firstAttribute="leading" secondItem="f1j-4t-OYW" secondAttribute="leading" id="Lup-bJ-X0X"/>
+                                    <constraint firstAttribute="trailing" secondItem="10f-G2-bq6" secondAttribute="trailing" id="RIZ-OG-Lcb"/>
+                                    <constraint firstItem="10f-G2-bq6" firstAttribute="top" secondItem="f1j-4t-OYW" secondAttribute="top" id="mio-Ql-H4K"/>
+                                    <constraint firstAttribute="bottom" secondItem="10f-G2-bq6" secondAttribute="bottom" id="trC-Hs-4Dr"/>
+                                    <constraint firstAttribute="width" secondItem="f1j-4t-OYW" secondAttribute="height" multiplier="1:1" id="uIe-Vv-A5D"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="SJh-o7-0vO" secondAttribute="trailing" id="1ZK-QH-ZsC"/>
+                            <constraint firstItem="YO9-FP-C5j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DU3-5i-66e"/>
+                            <constraint firstItem="f1j-4t-OYW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pys-dj-oEF"/>
                             <constraint firstItem="SJh-o7-0vO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="TFw-KK-Qet"/>
                             <constraint firstItem="SJh-o7-0vO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Z2W-ui-ndd"/>
+                            <constraint firstItem="YO9-FP-C5j" firstAttribute="top" secondItem="f1j-4t-OYW" secondAttribute="bottom" constant="32" id="gSD-UA-2aH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YO9-FP-C5j" secondAttribute="bottom" constant="16" id="js6-aF-2Ph"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="SJh-o7-0vO" id="aqT-c1-mhv"/>
+                        <outlet property="transitionContainerView" destination="f1j-4t-OYW" id="7CM-Ba-m9r"/>
+                        <outlet property="transitionImageView" destination="10f-G2-bq6" id="Udk-2z-IMv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="cat_dog_4" width="1280" height="800"/>
+    </resources>
 </document>

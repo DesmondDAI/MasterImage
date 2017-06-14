@@ -12,6 +12,11 @@ import NYTPhotoViewer
 class MainViewController: UIViewController, NYTPhotosViewControllerDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var transitionContainerView: UIView!
+    @IBOutlet weak var transitionImageView: UIImageView!
+    
+    let transitioningLayer = CATextLayer()
+    var imageViewTransitionSwitch = false
     
     var samplePhotos: Array = [FocusableImage]()
     var focusableImageViews: Array = [UIImageView]()
@@ -24,15 +29,9 @@ class MainViewController: UIViewController, NYTPhotosViewControllerDelegate, UIS
         self.setupScrollViewData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     
     // MARK: Internal Methods
-    func setupScrollViewData()
-    {
+    func setupScrollViewData() {
         self.scrollView.delegate = self
         let pageWidth: CGFloat = UIScreen.main.bounds.width
         let pageHeight: CGFloat = pageWidth * 9 / 16
@@ -74,6 +73,21 @@ class MainViewController: UIViewController, NYTPhotosViewControllerDelegate, UIS
         
         let photosVC = NYTPhotosViewController(photos: self.samplePhotos, initialPhoto: self.samplePhotos[tappedViewIndex], delegate: self)
         self.present(photosVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func startTransitionBtnDidTap(_ sender: UIButton) {
+        let transition = CATransition()
+        transition.duration = 0.2
+        transition.type = kCATransitionFade
+        transition.subtype = kCATransitionFromTop
+        transitionImageView.layer.add(transition, forKey: "keyToIdentifyTransition")
+        if imageViewTransitionSwitch {
+            imageViewTransitionSwitch = false
+            transitionImageView.image = UIImage(named: "cat_dog_4")
+        } else {
+            imageViewTransitionSwitch = true
+            transitionImageView.image = UIImage(named: "cat_dog_3")
+        }
     }
 }
 
